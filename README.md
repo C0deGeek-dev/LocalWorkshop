@@ -24,15 +24,11 @@ and are never published without a separate explicit decision.
 | `scripts/` | Pipeline stages + `config.ps1` (single source of pinned revisions + model dir) |
 | `manifests/` | One provenance JSON per produced artifact (sha256, size, tool revisions) — the weights-out-of-git substitute |
 | `docs/` | README, vision, decision log, model-card template |
-| `tasks/` | Stub pointing at the centralized plans in LocalHub |
-
-Plans and work-tracking for LocalWorkshop live in the private **LocalHub** repo,
-not here (`LocalHub/plans/localworkshop/`). This repo holds shipped tooling only.
 
 **Governance status:** LocalWorkshop is **not** on the coordinated LocalX
 release train (it versions independently of the five product repos); its
-decisions live in `docs/decisions.md` and are indexed by the private
-`LocalHub/REGISTRY.md`.
+durable decisions live in `docs/decisions.md`. This repository contains shipped
+tooling and its public technical documentation, not internal work tracking.
 
 ## License
 

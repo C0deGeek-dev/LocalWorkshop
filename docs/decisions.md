@@ -1,9 +1,8 @@
 # LocalWorkshop — architecture decisions
 
 House format `ADR-####`. Durable decisions that hold across pipelines live here;
-transient build-sequencing choices stay in the LocalHub plan's decision log. When
-a record is added or its headline changes, update the matching row in
-`LocalHub/REGISTRY.md` in the same change (LocalX no-drift rule).
+transient build-sequencing choices stay in maintainer-local work tracking. Keep
+this public decision log current whenever a durable rule is added or changed.
 
 > Decisions are plan-agnostic: they record *what holds for the tooling*, never a
 > plan id, subject, or box number.
@@ -125,6 +124,6 @@ an unrelated release ceremony to every product cut. A standalone tag still gives
 each published artifact a citable repo revision.
 
 **Consequences.** Tags are cut here by hand (or a repo-local release script),
-never by the coordinated `cut-release.ps1`. `LocalHub/REGISTRY.md` records the
-train-exemption; the README states the governance status. Joining the train
+never by the coordinated product release procedure. The README states the
+train exemption and governance status. Joining the train
 later would be an explicit future decision, not a default.

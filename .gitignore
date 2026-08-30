@@ -37,6 +37,7 @@ plan.md
 plan-next.md
 analysis.md
 scratch/
+/tasks/
 
 # Logs / transient run state
 logs/
