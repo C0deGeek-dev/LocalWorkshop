@@ -32,6 +32,8 @@ tooling and its public technical documentation, not internal work tracking.
 
 ## License
 
+![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/license-PolyForm_Noncommercial_1.0.0-blue.svg)
+
 LocalX-owned tooling and documentation are available under the
 [PolyForm Noncommercial License 1.0.0](LICENSE). Commercial use requires a
 separate license. Produced or consumed models, datasets, and tools keep their
