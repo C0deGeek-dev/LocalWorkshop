@@ -1,0 +1,4 @@
+# The calibration supplement is pinned by sha256 in scripts/config.ps1 and the
+# imatrix manifest. Its bytes must stay identical across platforms, so disable
+# line-ending normalization for it — a CRLF checkout would change the hash.
+calibration-sources/supplement.txt -text

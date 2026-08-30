@@ -1,0 +1,84 @@
+{
+  "artifact": "Ornith-1.0-35B-heretic.imatrix",
+  "kind": "imatrix",
+  "sha256": "2acd1aa03370a9fa82a52843eb7a62c3c36689c0f9da0ead6476967132530d99",
+  "size_bytes": 192223904,
+  "produced_utc": "2026-07-01T00:19:57.5561649Z",
+  "source": {
+    "repo": "thanet-s/Ornith-1.0-35B-heretic",
+    "revision": "efafbfc76689cecfcab1602e1482e839068a0985"
+  },
+  "tools": {
+    "llama_cpp_tag": "b9596",
+    "llama_cpp_build": "win-cuda-13.3"
+  },
+  "pipeline": {
+    "stage": "imatrix",
+    "base": "q8",
+    "chunks": 132,
+    "chunks_requested": 512,
+    "ngl": 22,
+    "expert_coverage": "full coverage (256/256 experts, 0 uncovered)",
+    "uncovered_experts": 0
+  },
+  "corpus": {
+    "sha256": "e26b0ea5ce2764355eba6c65d052429ee1fe59e113184e9d7e85661e20d65295",
+    "size_bytes": 283450,
+    "assembly": "byte-exact concatenation of sources in listed order",
+    "composition": "Multi-domain calibration: bartowski calibration_datav3 (community set: code/reasoning/chat/multilingual) + a curated code/tool-call/reasoning supplement. Exercises the routed experts; not wikitext (avoids prose overfit).",
+    "sources": [
+      {
+        "name": "bartowski-calibration_datav3",
+        "sha256": "200e109bcd2b599fabcceaada7f52bbd1e7c8f9ae030b8dc59c011de039a8026",
+        "size_bytes": 279515,
+        "url": "https://gist.githubusercontent.com/bartowski1182/eb213dccb3571f863da82e99418f81e8/raw/calibration_datav3.txt",
+        "role": "community multi-domain calibration set (code/reasoning/chat/multilingual; not wikitext)"
+      },
+      {
+        "name": "localworkshop-supplement",
+        "sha256": "d1e2847932882cb472d8af5cc4bf5a22db760efe73839a4bc8aea1d0dec85d10",
+        "size_bytes": 3935,
+        "path": "calibration-sources/supplement.txt",
+        "role": "curated code + tool-call + reasoning supplement (exercises the MoE experts; not wikitext)"
+      }
+    ]
+  },
+  "license_chain": [
+    {
+      "name": "thanet-s/Ornith-1.0-35B-heretic",
+      "license": "mit",
+      "role": "source-checkpoint (heretic abliteration)",
+      "url": "https://huggingface.co/thanet-s/Ornith-1.0-35B-heretic"
+    },
+    {
+      "name": "deepreinforce-ai/Ornith-1.0-35B",
+      "license": "mit",
+      "role": "base-model",
+      "url": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B"
+    },
+    {
+      "name": "Qwen3.5 (upstream arch)",
+      "license": "verify-upstream-before-redistribution",
+      "role": "arch-base",
+      "url": ""
+    },
+    {
+      "name": "p-e-w/heretic",
+      "license": "tool (v1.4.0)",
+      "role": "abliteration-tool",
+      "url": "https://github.com/p-e-w/heretic"
+    },
+    {
+      "name": "mudler/apex-quant",
+      "license": "mit",
+      "role": "quantizer",
+      "url": "https://github.com/mudler/apex-quant"
+    }
+  ],
+  "host": {
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "driver": "591.74",
+    "os": "Microsoft Windows NT 10.0.26200.0"
+  },
+  "notes": "Importance matrix for APEX I-tiers. Base: q8 (Q8_0). Corpus recorded in the corpus block (pinned sources + assembled sha256). Actual run: 132 chunks, 510 entries, full 256-expert coverage (0 uncovered)."
+}

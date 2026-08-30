@@ -1,0 +1,95 @@
+def quicksort(arr):
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+    return quicksort(left) + middle + quicksort(right)
+
+async function fetchUser(id) {
+  const res = await fetch(`/api/users/${id}`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
+fn fibonacci(n: u64) -> u64 {
+    let (mut a, mut b) = (0u64, 1u64);
+    for _ in 0..n { let t = a + b; a = b; b = t; }
+    a
+}
+
+#include <vector>
+#include <algorithm>
+template <typename T>
+T median(std::vector<T> v) {
+    std::nth_element(v.begin(), v.begin() + v.size() / 2, v.end());
+    return v[v.size() / 2];
+}
+
+package main
+import ("fmt"; "sync")
+func main() {
+    var wg sync.WaitGroup
+    ch := make(chan int, 8)
+    for i := 0; i < 8; i++ { wg.Add(1); go func(n int) { defer wg.Done(); ch <- n*n }(i) }
+    go func() { wg.Wait(); close(ch) }()
+    for v := range ch { fmt.Println(v) }
+}
+
+SELECT u.id, u.name, COUNT(o.id) AS orders
+FROM users u LEFT JOIN orders o ON o.user_id = u.id
+WHERE u.created_at >= '2026-01-01'
+GROUP BY u.id, u.name
+HAVING COUNT(o.id) > 5
+ORDER BY orders DESC LIMIT 20;
+
+#!/usr/bin/env bash
+set -euo pipefail
+for f in *.gguf; do
+  sha256sum "$f" | tee -a manifest.sha256
+done
+
+Let me reason through this step by step. We need to find the smallest positive
+integer n such that n! is divisible by 10^k. Since 10 = 2 * 5 and factorials have
+more factors of 2 than 5, the count of trailing zeros is determined by the number
+of factors of 5 in n!, which is floor(n/5) + floor(n/25) + floor(n/125) + ...
+So we solve for the least n with that sum >= k.
+
+The user asked to refactor the authentication middleware. First I will read the
+current implementation, identify the token-expiry comparison bug (it uses < where
+<= is correct for the boundary second), write a focused failing test, apply the
+one-line fix, and run the suite to confirm green before reporting back.
+
+{"role": "assistant", "content": null, "tool_calls": [{"id": "call_1", "type": "function", "function": {"name": "search_files", "arguments": "{\"query\": \"def authenticate\", \"path\": \"src/auth\", \"max_results\": 20}"}}]}
+{"role": "tool", "tool_call_id": "call_1", "content": "src/auth/middleware.py:42: def authenticate(request, token):"}
+{"role": "assistant", "content": null, "tool_calls": [{"id": "call_2", "type": "function", "function": {"name": "read_file", "arguments": "{\"path\": \"src/auth/middleware.py\", \"start\": 40, \"end\": 60}"}}]}
+{"role": "tool", "tool_call_id": "call_2", "content": "if token.exp < now: raise Unauthorized()"}
+{"role": "assistant", "content": "The expiry check uses a strict less-than. A token expiring exactly at `now` is wrongly rejected. I will change it to `<=` and add a boundary test."}
+
+System: You are a careful coding agent. Use the provided tools to inspect the
+repository before editing. Prefer the smallest change that fixes the issue and
+always verify with the test suite. Never invent file paths.
+
+import numpy as np
+def softmax(x):
+    z = x - np.max(x, axis=-1, keepdims=True)
+    e = np.exp(z)
+    return e / np.sum(e, axis=-1, keepdims=True)
+
+Question: A train leaves city A at 9:00 traveling 60 km/h toward city B, 210 km
+away. A second train leaves B at 9:30 traveling 90 km/h toward A. At what time do
+they meet? Solution: At 9:30 the first train has covered 30 km, leaving 180 km of
+gap. Combined closing speed is 150 km/h, so they close 180 km in 1.2 h = 72 min,
+meeting at 10:42.
+
+interface Repository<T> {
+  findById(id: string): Promise<T | null>;
+  save(entity: T): Promise<void>;
+  delete(id: string): Promise<boolean>;
+}
+
+curl -X POST https://api.example.com/v1/chat/completions \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"model": "local", "messages": [{"role": "user", "content": "ping"}]}'

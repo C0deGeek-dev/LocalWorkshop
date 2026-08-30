@@ -1,0 +1,56 @@
+{
+  "artifact": "mmproj-Ornith-1.0-35B-heretic-f16.gguf",
+  "kind": "mmproj",
+  "sha256": "2d48e7b21078672ef283a98cdec6fba1edb47b37f01827eb04cd6ba5592be288",
+  "size_bytes": 902822720,
+  "produced_utc": "2026-06-30T22:56:30.7525420Z",
+  "source": {
+    "repo": "thanet-s/Ornith-1.0-35B-heretic",
+    "revision": "efafbfc76689cecfcab1602e1482e839068a0985"
+  },
+  "tools": {
+    "llama_cpp_tag": "b9596"
+  },
+  "pipeline": {
+    "stage": "convert",
+    "mmproj": true
+  },
+  "license_chain": [
+    {
+      "name": "thanet-s/Ornith-1.0-35B-heretic",
+      "license": "mit",
+      "role": "source-checkpoint (heretic abliteration)",
+      "url": "https://huggingface.co/thanet-s/Ornith-1.0-35B-heretic"
+    },
+    {
+      "name": "deepreinforce-ai/Ornith-1.0-35B",
+      "license": "mit",
+      "role": "base-model",
+      "url": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B"
+    },
+    {
+      "name": "Qwen3.5 (upstream arch)",
+      "license": "verify-upstream-before-redistribution",
+      "role": "arch-base",
+      "url": ""
+    },
+    {
+      "name": "p-e-w/heretic",
+      "license": "tool (v1.4.0)",
+      "role": "abliteration-tool",
+      "url": "https://github.com/p-e-w/heretic"
+    },
+    {
+      "name": "mudler/apex-quant",
+      "license": "mit",
+      "role": "quantizer",
+      "url": "https://github.com/mudler/apex-quant"
+    }
+  ],
+  "host": {
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "driver": "591.74",
+    "os": "Microsoft Windows NT 10.0.26200.0"
+  },
+  "notes": "Vision projector for --mmproj."
+}

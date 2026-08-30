@@ -1,0 +1,49 @@
+# LocalWorkshop — weights NEVER enter git. The repo holds scripts + manifests,
+# not model artifacts. Manifests (sha256/size/provenance) are the substitute.
+
+# Model weight / large artifact formats (any depth)
+*.gguf
+*.safetensors
+*.imatrix
+*.dat
+*.onnx
+*.pt
+*.pth
+*.ckpt
+*.bin
+
+# External model / build working dirs (kept off-repo; configurable in scripts/config.ps1)
+# Anchored to repo root so docs/models/ (model cards) stays tracked.
+/models/
+/work/
+/build/
+/llama.cpp/
+/apex-quant/
+*.tar.gz
+*.zip
+
+# Calibration corpora (large, fetched/assembled per-run). The small curated
+# supplement source lives in calibration-sources/ (tracked) and IS committed —
+# it is pinned provenance, not a per-run fetch.
+corpus/
+calibration/
+
+# Per-machine config overlay (paths are user-specific)
+scripts/config.local.ps1
+**/settings.local.json
+
+# Working notes — kept locally, not pushed
+plan.md
+plan-next.md
+analysis.md
+scratch/
+
+# Logs / transient run state
+logs/
+*.log
+
+# OS / editor noise
+Thumbs.db
+.DS_Store
+.vs/
+.idea/

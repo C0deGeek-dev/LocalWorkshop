@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/C0deGeek-dev/LocalWorkshop/manifests/schema.json",
+  "title": "LocalWorkshop artifact manifest",
+  "description": "Provenance + integrity record for one produced model artifact. Weights stay out of git; this manifest is the committed, verifiable substitute.",
+  "type": "object",
+  "required": ["artifact", "kind", "sha256", "size_bytes", "source", "tools", "pipeline", "license_chain"],
+  "additionalProperties": false,
+  "properties": {
+    "artifact": { "type": "string", "description": "File name of the produced artifact" },
+    "kind": {
+      "type": "string",
+      "enum": ["source-checkpoint", "gguf-f16", "gguf-apex", "mmproj", "imatrix"]
+    },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "size_bytes": { "type": "integer", "minimum": 0 },
+    "produced_utc": { "type": "string", "description": "ISO-8601 UTC timestamp (operator-stamped)" },
+    "source": {
+      "type": "object",
+      "required": ["repo"],
+      "additionalProperties": true,
+      "properties": {
+        "repo": { "type": "string", "description": "Hugging Face repo id" },
+        "revision": { "type": "string", "description": "Branch/tag requested" },
+        "commit": { "type": "string", "description": "Resolved commit SHA" }
+      }
+    },
+    "tools": {
+      "type": "object",
+      "description": "Pinned tool revisions used to produce this artifact",
+      "additionalProperties": true,
+      "properties": {
+        "llama_cpp_tag": { "type": "string" },
+        "llama_cpp_build": { "type": "string", "description": "e.g. win-cuda-13.3" },
+        "apex_quant_commit": { "type": "string" }
+      }
+    },
+    "pipeline": {
+      "type": "object",
+      "description": "Stage + parameters that produced this artifact",
+      "additionalProperties": true,
+      "properties": {
+        "stage": { "type": "string", "enum": ["acquire", "convert", "quantize-apex", "imatrix", "serve"] },
+        "profile": { "type": "string" },
+        "num_layers": { "type": "integer" },
+        "base_type": { "type": "string" },
+        "imatrix": { "type": "boolean", "description": "Whether this tier was quantized with an importance matrix" }
+      }
+    },
+    "corpus": {
+      "type": "object",
+      "description": "Calibration corpus identity for imatrix artifacts: the pinned sources + the assembled file, so the imatrix (and the I-tiers it calibrates) is reproducible.",
+      "additionalProperties": true,
+      "properties": {
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$", "description": "sha256 of the assembled corpus" },
+        "size_bytes": { "type": "integer", "minimum": 0 },
+        "assembly": { "type": "string", "description": "How sources were combined, e.g. byte-exact concatenation in listed order" },
+        "composition": { "type": "string", "description": "Human description of what the corpus contains" },
+        "sources": {
+          "type": "array",
+          "description": "Ordered pinned inputs concatenated into the corpus",
+          "items": {
+            "type": "object",
+            "required": ["name", "sha256"],
+            "additionalProperties": true,
+            "properties": {
+              "name": { "type": "string" },
+              "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+              "size_bytes": { "type": "integer", "minimum": 0 },
+              "url": { "type": "string", "description": "Remote source (fetched)" },
+              "path": { "type": "string", "description": "Committed repo-local source (versioned)" },
+              "role": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "license_chain": {
+      "type": "array",
+      "description": "Ordered upstream license/term records, base first",
+      "items": {
+        "type": "object",
+        "required": ["name", "license"],
+        "additionalProperties": true,
+        "properties": {
+          "name": { "type": "string" },
+          "license": { "type": "string" },
+          "url": { "type": "string" },
+          "role": { "type": "string", "description": "e.g. base-model, arch-base, abliteration-tool, quantizer" }
+        }
+      }
+    },
+    "host": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "gpu": { "type": "string" },
+        "driver": { "type": "string" },
+        "os": { "type": "string" }
+      }
+    },
+    "notes": { "type": "string" }
+  }
+}

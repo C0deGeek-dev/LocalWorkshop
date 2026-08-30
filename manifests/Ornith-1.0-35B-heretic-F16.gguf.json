@@ -1,0 +1,56 @@
+{
+  "artifact": "Ornith-1.0-35B-heretic-F16.gguf",
+  "kind": "gguf-f16",
+  "sha256": "9243699416df48dc428d253dab9fee9f679bce1012c7a8c4bfd6ffae52aac108",
+  "size_bytes": 69376637536,
+  "produced_utc": "2026-06-30T23:33:09.9594799Z",
+  "source": {
+    "repo": "thanet-s/Ornith-1.0-35B-heretic",
+    "revision": "efafbfc76689cecfcab1602e1482e839068a0985"
+  },
+  "tools": {
+    "llama_cpp_tag": "b9596"
+  },
+  "pipeline": {
+    "outtype": "f16",
+    "stage": "convert"
+  },
+  "license_chain": [
+    {
+      "name": "thanet-s/Ornith-1.0-35B-heretic",
+      "license": "mit",
+      "role": "source-checkpoint (heretic abliteration)",
+      "url": "https://huggingface.co/thanet-s/Ornith-1.0-35B-heretic"
+    },
+    {
+      "name": "deepreinforce-ai/Ornith-1.0-35B",
+      "license": "mit",
+      "role": "base-model",
+      "url": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B"
+    },
+    {
+      "name": "Qwen3.5 (upstream arch)",
+      "license": "verify-upstream-before-redistribution",
+      "role": "arch-base",
+      "url": ""
+    },
+    {
+      "name": "p-e-w/heretic",
+      "license": "tool (v1.4.0)",
+      "role": "abliteration-tool",
+      "url": "https://github.com/p-e-w/heretic"
+    },
+    {
+      "name": "mudler/apex-quant",
+      "license": "mit",
+      "role": "quantizer",
+      "url": "https://github.com/mudler/apex-quant"
+    }
+  ],
+  "host": {
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "driver": "591.74",
+    "os": "Microsoft Windows NT 10.0.26200.0"
+  },
+  "notes": "F16 master — input for all APEX tiers. Trunk-only (no MTP head)."
+}

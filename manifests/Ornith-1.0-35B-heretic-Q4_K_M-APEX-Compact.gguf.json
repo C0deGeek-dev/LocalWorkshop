@@ -1,0 +1,60 @@
+{
+  "artifact": "Ornith-1.0-35B-heretic-Q4_K_M-APEX-Compact.gguf",
+  "kind": "gguf-apex",
+  "sha256": "1a7d90edb031a46caa034a689e272a1039dd0bcb98cb2ff94ed14d48dc1a97e5",
+  "size_bytes": 16538851616,
+  "produced_utc": "2026-06-30T23:59:11.6560956Z",
+  "source": {
+    "revision": "efafbfc76689cecfcab1602e1482e839068a0985",
+    "repo": "thanet-s/Ornith-1.0-35B-heretic"
+  },
+  "tools": {
+    "apex_quant_commit": "a445a121bfbf4d318065d39d63d0e995bf353787",
+    "llama_cpp_tag": "b9596"
+  },
+  "pipeline": {
+    "imatrix": false,
+    "num_layers": 40,
+    "base_type": "Q4_K_M",
+    "profile": "compact",
+    "stage": "quantize-apex"
+  },
+  "license_chain": [
+    {
+      "name": "thanet-s/Ornith-1.0-35B-heretic",
+      "license": "mit",
+      "role": "source-checkpoint (heretic abliteration)",
+      "url": "https://huggingface.co/thanet-s/Ornith-1.0-35B-heretic"
+    },
+    {
+      "name": "deepreinforce-ai/Ornith-1.0-35B",
+      "license": "mit",
+      "role": "base-model",
+      "url": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B"
+    },
+    {
+      "name": "Qwen3.5 (upstream arch)",
+      "license": "verify-upstream-before-redistribution",
+      "role": "arch-base",
+      "url": ""
+    },
+    {
+      "name": "p-e-w/heretic",
+      "license": "tool (v1.4.0)",
+      "role": "abliteration-tool",
+      "url": "https://github.com/p-e-w/heretic"
+    },
+    {
+      "name": "mudler/apex-quant",
+      "license": "mit",
+      "role": "quantizer",
+      "url": "https://github.com/mudler/apex-quant"
+    }
+  ],
+  "host": {
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "driver": "591.74",
+    "os": "Microsoft Windows NT 10.0.26200.0"
+  },
+  "notes": "APEX Compact (~16.1 GB nominal). plain APEX control. No MTP head."
+}

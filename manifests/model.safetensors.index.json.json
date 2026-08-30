@@ -1,0 +1,57 @@
+{
+  "artifact": "model.safetensors.index.json",
+  "kind": "source-checkpoint",
+  "sha256": "4889eb3ce939ed4635b3c4d6a00d553f36a315db6519e9393c2e6a76f95d1593",
+  "size_bytes": 3334818,
+  "produced_utc": "2026-06-30T22:37:42.9003115Z",
+  "source": {
+    "commit": "efafbfc76689cecfcab1602e1482e839068a0985",
+    "repo": "thanet-s/Ornith-1.0-35B-heretic",
+    "revision": "efafbfc76689cecfcab1602e1482e839068a0985"
+  },
+  "tools": {
+    "downloader": "hf"
+  },
+  "pipeline": {
+    "shards": 16,
+    "stage": "acquire"
+  },
+  "license_chain": [
+    {
+      "name": "thanet-s/Ornith-1.0-35B-heretic",
+      "license": "mit",
+      "role": "source-checkpoint (heretic abliteration)",
+      "url": "https://huggingface.co/thanet-s/Ornith-1.0-35B-heretic"
+    },
+    {
+      "name": "deepreinforce-ai/Ornith-1.0-35B",
+      "license": "mit",
+      "role": "base-model",
+      "url": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B"
+    },
+    {
+      "name": "Qwen3.5 (upstream arch)",
+      "license": "verify-upstream-before-redistribution",
+      "role": "arch-base",
+      "url": ""
+    },
+    {
+      "name": "p-e-w/heretic",
+      "license": "tool (v1.4.0)",
+      "role": "abliteration-tool",
+      "url": "https://github.com/p-e-w/heretic"
+    },
+    {
+      "name": "mudler/apex-quant",
+      "license": "mit",
+      "role": "quantizer",
+      "url": "https://github.com/mudler/apex-quant"
+    }
+  ],
+  "host": {
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "driver": "591.74",
+    "os": "Microsoft Windows NT 10.0.26200.0"
+  },
+  "notes": "Full-weight BF16, 16 shards. Heretic abliteration; trunk-only (no MTP head). Verify upstream terms before redistribution."
+}
