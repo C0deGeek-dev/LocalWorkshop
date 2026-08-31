@@ -1,0 +1,41 @@
+name: workshop-check
+
+# Enforces LocalWorkshop's existing local test/analyzer pass in CI, not just
+# on a developer's own machine. Windows-only: the pipeline scripts this repo
+# tests around depend on Windows drive-letter paths and Git Bash (see
+# scripts/_common.ps1, scripts/config.ps1) — the model-quantization tooling
+# this repo builds is Windows-first, not a cross-platform library, so a
+# Linux/macOS leg would not exercise anything closer to how it actually runs
+# and risks a false pass/fail unrelated to the pure helpers under test.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Pester tests
+        shell: pwsh
+        run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module Pester -MinimumVersion 5.5.0 -Force -Scope CurrentUser
+          $r = Invoke-Pester -Path tests -Output Detailed -PassThru
+          if ($r.FailedCount -gt 0) { exit 1 }
+
+      - name: PSScriptAnalyzer
+        shell: pwsh
+        run: |
+          Install-Module PSScriptAnalyzer -Force -Scope CurrentUser
+          $results = Invoke-ScriptAnalyzer -Path . -Recurse -Settings ./PSScriptAnalyzerSettings.psd1
+          $results | Format-Table -AutoSize
+          if ($results.Count -gt 0) { exit 1 }
