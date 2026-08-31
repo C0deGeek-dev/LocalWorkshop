@@ -43,6 +43,10 @@ scratch/
 logs/
 *.log
 
+# Local Pester run output (workshop-check.yml runs this in CI; a local
+# Invoke-Pester leaves this NUnit-format file behind uncommitted)
+testResults.xml
+
 # OS / editor noise
 Thumbs.db
 .DS_Store
